@@ -1,0 +1,21 @@
+_base_: ../training/upstream/configs/act_ref.yaml
+name: fold_towel_act_delta_seed42
+data:
+  task: fold_towel
+  camera_names: [right_wrist, left_wrist]
+  action_mode: delta
+  action_shift: 0
+  train_ratio: 0.8
+  split_seed: 1
+  norm_stats_from: train
+policy:
+  chunk_size: 100
+train:
+  seed: 42
+  batch_size: 8
+  num_epochs: 5000
+  num_workers: 4
+  save_every: 250
+  extra_eval_every: 250
+  extra_eval_samples: 256
+  device: cuda

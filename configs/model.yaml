@@ -1,0 +1,6 @@
+model:
+  ckpt: models/fold_towel_act_delta_seed42.pt
+  format: act_ref
+  task: fold_towel
+  action_mode: delta
+  compensate_action_shift: false

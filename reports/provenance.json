@@ -1,0 +1,24 @@
+{
+  "training_upstream": {
+    "repo": "FuFutheBest/yam_train",
+    "commit": "0672a880e94d7683618b738f910d67d53a9e3df4",
+    "message": "train: long schedule (20000 epochs), multi-ckpt eval_offline, train_all.sh (split + all-data runs)"
+  },
+  "inference_upstream": {
+    "repo": "FuFutheBest/yam_infer",
+    "commit": "bb2e8aba33d6bd9bcba43c2ffca129ad90c3feb5"
+  },
+  "task": "fold_towel",
+  "new_files": [
+    "training/fit.py",
+    "training/pipeline.py",
+    "training/audit.py",
+    "training/select.py",
+    "training/check_contract.py",
+    "configs/fold_towel.yaml",
+    "scripts/",
+    "tests/"
+  ],
+  "weights_are_new_training_not_renamed": true,
+  "actual_training_complete": false
+}

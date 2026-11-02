@@ -1,0 +1,14 @@
+{
+  "task": "fold_towel",
+  "source": "User-provided local folder fold_towel",
+  "episodes": 51,
+  "mcap_bytes": 2608166274,
+  "total_demonstration_seconds": 943.112825071,
+  "recorder_errors": 0,
+  "recorder_dropped_batches": 0,
+  "recorded_task_name": "generic label; re-labeled fold_towel in converted dataset by user instruction, original metadata preserved",
+  "color_contract": "RGB JPEG",
+  "state_layout": "left_joint0..5,left_gripper,right_joint0..5,right_gripper",
+  "raw_data_uploaded_to_github": false,
+  "real_robot_commands_sent": 0
+}

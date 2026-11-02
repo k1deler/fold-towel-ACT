@@ -1,0 +1,10 @@
+execution:
+  mode: chunk
+  horizon: 60
+  blend_s: 0.1
+  ensemble_m: 0.01
+control:
+  freeze_left: false
+  freeze_right: false
+episode:
+  max_seconds: 60.0
