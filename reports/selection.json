@@ -1,0 +1,275 @@
+[
+  {
+    "checkpoint": "epoch_00249.pt",
+    "epoch": 249,
+    "joint_mae": 0.0810104019496734,
+    "metrics": {
+      "right_arm_rad": 0.08392471759755614,
+      "right_grip": 0.14068603859244647,
+      "left_arm_rad": 0.07809608630179068,
+      "left_grip": 0.13519950993144086,
+      "first_step_right_arm_rad": 0.032500443058400684,
+      "first_step_right_grip": 0.07636023523627955
+    }
+  },
+  {
+    "checkpoint": "epoch_00499.pt",
+    "epoch": 499,
+    "joint_mae": 0.07854858387742225,
+    "metrics": {
+      "right_arm_rad": 0.07921244453515998,
+      "right_grip": 0.12651362953088027,
+      "left_arm_rad": 0.07788472321968454,
+      "left_grip": 0.12377610569712906,
+      "first_step_right_arm_rad": 0.031056789444998383,
+      "first_step_right_grip": 0.028837109441155917
+    }
+  },
+  {
+    "checkpoint": "epoch_00749.pt",
+    "epoch": 749,
+    "joint_mae": 0.07942889364363151,
+    "metrics": {
+      "right_arm_rad": 0.08177463116767854,
+      "right_grip": 0.11811626953819739,
+      "left_arm_rad": 0.07708315611958447,
+      "left_grip": 0.12015170938642457,
+      "first_step_right_arm_rad": 0.028980900316620744,
+      "first_step_right_grip": 0.024191048458305886
+    }
+  },
+  {
+    "checkpoint": "epoch_00999.pt",
+    "epoch": 999,
+    "joint_mae": 0.07739919340972831,
+    "metrics": {
+      "right_arm_rad": 0.0814208305115163,
+      "right_grip": 0.1182371234838298,
+      "left_arm_rad": 0.07337755630794034,
+      "left_grip": 0.11779045299545661,
+      "first_step_right_arm_rad": 0.027835771664551128,
+      "first_step_right_grip": 0.020628256157579017
+    }
+  },
+  {
+    "checkpoint": "epoch_01249.pt",
+    "epoch": 1249,
+    "joint_mae": 0.07541655592869051,
+    "metrics": {
+      "right_arm_rad": 0.07935254833626565,
+      "right_grip": 0.11390189083524507,
+      "left_arm_rad": 0.07148056352111536,
+      "left_grip": 0.11517036818409884,
+      "first_step_right_arm_rad": 0.02603331010417757,
+      "first_step_right_grip": 0.01837936116862693
+    }
+  },
+  {
+    "checkpoint": "epoch_01499.pt",
+    "epoch": 1499,
+    "joint_mae": 0.07621689160430586,
+    "metrics": {
+      "right_arm_rad": 0.07961408129356745,
+      "right_grip": 0.11147979968209362,
+      "left_arm_rad": 0.07281970191504426,
+      "left_grip": 0.10995809556910562,
+      "first_step_right_arm_rad": 0.02429526215663221,
+      "first_step_right_grip": 0.01654748828332231
+    }
+  },
+  {
+    "checkpoint": "epoch_01749.pt",
+    "epoch": 1749,
+    "joint_mae": 0.076744547435873,
+    "metrics": {
+      "right_arm_rad": 0.07972528433275394,
+      "right_grip": 0.10298513239123504,
+      "left_arm_rad": 0.07376381053899207,
+      "left_grip": 0.1048182102094127,
+      "first_step_right_arm_rad": 0.023577712809090674,
+      "first_step_right_grip": 0.014767821034183726
+    }
+  },
+  {
+    "checkpoint": "epoch_01999.pt",
+    "epoch": 1999,
+    "joint_mae": 0.07611544928923457,
+    "metrics": {
+      "right_arm_rad": 0.07926718306873766,
+      "right_grip": 0.10695210737033072,
+      "left_arm_rad": 0.07296371550973148,
+      "left_grip": 0.10929923648346639,
+      "first_step_right_arm_rad": 0.02243728669589018,
+      "first_step_right_grip": 0.012283786742045777
+    }
+  },
+  {
+    "checkpoint": "epoch_02249.pt",
+    "epoch": 2249,
+    "joint_mae": 0.07485243842811974,
+    "metrics": {
+      "right_arm_rad": 0.0773109237613354,
+      "right_grip": 0.10467052804615265,
+      "left_arm_rad": 0.07239395309490408,
+      "left_grip": 0.105886292777542,
+      "first_step_right_arm_rad": 0.022824486952534546,
+      "first_step_right_grip": 0.014649904625912313
+    }
+  },
+  {
+    "checkpoint": "epoch_02499.pt",
+    "epoch": 2499,
+    "joint_mae": 0.07537704381291138,
+    "metrics": {
+      "right_arm_rad": 0.07839627409916548,
+      "right_grip": 0.11033529359706237,
+      "left_arm_rad": 0.07235781352665728,
+      "left_grip": 0.11086391828457558,
+      "first_step_right_arm_rad": 0.022051940045988278,
+      "first_step_right_grip": 0.014471107419012696
+    }
+  },
+  {
+    "checkpoint": "epoch_02749.pt",
+    "epoch": 2749,
+    "joint_mae": 0.07690416019031923,
+    "metrics": {
+      "right_arm_rad": 0.08071243291931633,
+      "right_grip": 0.10426674475577069,
+      "left_arm_rad": 0.07309588746132212,
+      "left_grip": 0.10414480768955703,
+      "first_step_right_arm_rad": 0.022897381024714985,
+      "first_step_right_grip": 0.012524714060418773
+    }
+  },
+  {
+    "checkpoint": "epoch_02999.pt",
+    "epoch": 2999,
+    "joint_mae": 0.07577552639493568,
+    "metrics": {
+      "right_arm_rad": 0.07852138277807615,
+      "right_grip": 0.10702441809385028,
+      "left_arm_rad": 0.07302967001179521,
+      "left_grip": 0.10750676336371115,
+      "first_step_right_arm_rad": 0.02182679154755836,
+      "first_step_right_grip": 0.011797759932960616
+    }
+  },
+  {
+    "checkpoint": "epoch_03249.pt",
+    "epoch": 3249,
+    "joint_mae": 0.07589144527652539,
+    "metrics": {
+      "right_arm_rad": 0.07829836651337999,
+      "right_grip": 0.09880413256622204,
+      "left_arm_rad": 0.0734845240396708,
+      "left_grip": 0.09935776159404192,
+      "first_step_right_arm_rad": 0.021053968835947973,
+      "first_step_right_grip": 0.012068252131939516
+    }
+  },
+  {
+    "checkpoint": "epoch_03499.pt",
+    "epoch": 3499,
+    "joint_mae": 0.07333350825822466,
+    "metrics": {
+      "right_arm_rad": 0.07569620573459895,
+      "right_grip": 0.10076889443222067,
+      "left_arm_rad": 0.07097081078185036,
+      "left_grip": 0.10140052365976396,
+      "first_step_right_arm_rad": 0.02080352904609602,
+      "first_step_right_grip": 0.011264533419307554
+    }
+  },
+  {
+    "checkpoint": "epoch_03749.pt",
+    "epoch": 3749,
+    "joint_mae": 0.07481256820585927,
+    "metrics": {
+      "right_arm_rad": 0.07722682319175216,
+      "right_grip": 0.10485632868158802,
+      "left_arm_rad": 0.07239831321996637,
+      "left_grip": 0.10660188222937124,
+      "first_step_right_arm_rad": 0.021476617038653483,
+      "first_step_right_grip": 0.01155962397933763
+    }
+  },
+  {
+    "checkpoint": "epoch_03999.pt",
+    "epoch": 3999,
+    "joint_mae": 0.07486062683616658,
+    "metrics": {
+      "right_arm_rad": 0.07680522039773188,
+      "right_grip": 0.09776855748500127,
+      "left_arm_rad": 0.07291603327460128,
+      "left_grip": 0.09716130017584611,
+      "first_step_right_arm_rad": 0.019892488537000947,
+      "first_step_right_grip": 0.010977920138429909
+    }
+  },
+  {
+    "checkpoint": "epoch_04249.pt",
+    "epoch": 4249,
+    "joint_mae": 0.07343185308374386,
+    "metrics": {
+      "right_arm_rad": 0.0759336306457244,
+      "right_grip": 0.10206017399261867,
+      "left_arm_rad": 0.07093007552176332,
+      "left_grip": 0.10222412420456282,
+      "first_step_right_arm_rad": 0.01982344268575768,
+      "first_step_right_grip": 0.010121015369804809
+    }
+  },
+  {
+    "checkpoint": "epoch_04499.pt",
+    "epoch": 4499,
+    "joint_mae": 0.0758708058105619,
+    "metrics": {
+      "right_arm_rad": 0.07787439645718788,
+      "right_grip": 0.10263208655308029,
+      "left_arm_rad": 0.0738672151639359,
+      "left_grip": 0.10541818104480541,
+      "first_step_right_arm_rad": 0.020238277154447815,
+      "first_step_right_grip": 0.009708891750051407
+    }
+  },
+  {
+    "checkpoint": "epoch_04749.pt",
+    "epoch": 4749,
+    "joint_mae": 0.07533133287828317,
+    "metrics": {
+      "right_arm_rad": 0.07800749496326291,
+      "right_grip": 0.09925200689859204,
+      "left_arm_rad": 0.07265517079330343,
+      "left_grip": 0.09993244383179047,
+      "first_step_right_arm_rad": 0.020526698972844315,
+      "first_step_right_grip": 0.010418807178211864
+    }
+  },
+  {
+    "checkpoint": "epoch_04999.pt",
+    "epoch": 4999,
+    "joint_mae": 0.07452774677222795,
+    "metrics": {
+      "right_arm_rad": 0.07669016179723469,
+      "right_grip": 0.1018446241865013,
+      "left_arm_rad": 0.07236533174722123,
+      "left_grip": 0.10326121198143505,
+      "first_step_right_arm_rad": 0.02069337223645107,
+      "first_step_right_grip": 0.015917069595161593
+    }
+  },
+  {
+    "checkpoint": "last.pt",
+    "epoch": 4999,
+    "joint_mae": 0.07452774677222795,
+    "metrics": {
+      "right_arm_rad": 0.07669016179723469,
+      "right_grip": 0.1018446241865013,
+      "left_arm_rad": 0.07236533174722123,
+      "left_grip": 0.10326121198143505,
+      "first_step_right_arm_rad": 0.02069337223645107,
+      "first_step_right_grip": 0.015917069595161593
+    }
+  }
+]

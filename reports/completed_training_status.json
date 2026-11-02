@@ -1,0 +1,49 @@
+{
+  "task": "fold_towel",
+  "phase": "complete_offline",
+  "pid": 1173358,
+  "code_root": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_20261101/fold-towel",
+  "hardware_connected": false,
+  "training_started": true,
+  "authorized_shared_gpu": 2,
+  "updated_wall_ns": 1793599535266719928,
+  "accepted_episodes": 51,
+  "rejected": [],
+  "episodes": 51,
+  "frames": 28271,
+  "note": "Idle GPU preferred; only the explicitly authorized shared GPU may also be used. No other jobs stopped.",
+  "allocation_at_launch": [
+    {
+      "index": 0,
+      "used_mib": 35514,
+      "total_mib": 97871,
+      "utilization": 98
+    },
+    {
+      "index": 1,
+      "used_mib": 17868,
+      "total_mib": 97871,
+      "utilization": 100
+    },
+    {
+      "index": 2,
+      "used_mib": 6119,
+      "total_mib": 97871,
+      "utilization": 80
+    },
+    {
+      "index": 3,
+      "used_mib": 72150,
+      "total_mib": 97871,
+      "utilization": 100
+    }
+  ],
+  "gpu": 2,
+  "child_pid": 1229082,
+  "child_log": "selection.log",
+  "epochs": 5000,
+  "seed": 42,
+  "model_path": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_20261101/artifacts/fold_towel_act_delta_seed42.pt",
+  "model_sha256": "3a6057cd9dc0bc2acdaf9545df223ac0d8bdba73ecf870dc3a3102ffcedf7af6",
+  "robot_tested": false
+}

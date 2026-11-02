@@ -7,7 +7,9 @@ sys.path[:0]=[str(ROOT/'inference'),str(ROOT/'training')]
 from audit import sha
 
 def fingerprints():
-    files=[ROOT/'configs/model.yaml',ROOT/'configs/runtime.yaml']
+    files=[ROOT/'configs/model.yaml',ROOT/'configs/runtime.yaml',ROOT/'artifact_manifest.json']
+    files += list((ROOT/'scripts').glob('*.py'))+list((ROOT/'scripts').glob('*.sh'))
+    files += [ROOT/'artifacts/validation_observation.npz']
     files += [p for base in ('inference/yam_infer','inference/third_party') for p in (ROOT/base).rglob('*')
               if p.is_file() and p.suffix!='.pyc' and '__pycache__' not in p.parts]
     files.append(ROOT/'inference/models/fold_towel_act_delta_seed42.pt')
@@ -39,7 +41,14 @@ def main():
     for _ in range(3):
         t=time.monotonic();actions,_=policy.predict(frames,q,'fold_towel');times.append(time.monotonic()-t)
         if actions.shape!=(100,14) or not np.isfinite(actions).all():raise ValueError('Wrong model output')
-    marker.write_text(json.dumps(dict(files=fingerprints(),environment=environment,scope='generated-input GPU smoke',
+    with np.load(ROOT/'artifacts/validation_observation.npz',allow_pickle=False) as observation:
+        if list(observation['cameras'])!=list(policy.cameras):raise ValueError('Reference camera order mismatch')
+        replay=policy.predict_prepared(observation['images'],observation['qpos'],'fold_towel')
+        difference=float(np.max(np.abs(replay-observation['absolute_action'])))
+    if not np.isfinite(difference) or difference>.002:
+        raise ValueError(f'Real recorded observation replay mismatch: max_abs_error={difference}')
+    marker.write_text(json.dumps(dict(files=fingerprints(),environment=environment,scope='generated input plus held-out recorded observation GPU replay',
+          recorded_observation_max_error=difference,
           inference_seconds=times,physical_commands_sent=0,task_success_verified=False),indent=2)+'\n')
     print('FOLD_DEPLOY_MODEL_VERIFIED; no robot commands')
 

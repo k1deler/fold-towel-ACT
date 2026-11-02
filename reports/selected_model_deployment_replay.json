@@ -1,0 +1,19 @@
+{
+  "environment": {
+    "torch": "2.7.1+cu126",
+    "cuda": "12.6",
+    "python": "/home/users/zhaoruiqi_yizu/output/miniconda3/envs/act/bin/python",
+    "gpu": "NVIDIA H20"
+  },
+  "scope": "generated input plus held-out recorded observation GPU replay",
+  "recorded_observation_max_error": 0.00022658117648699516,
+  "inference_seconds": [
+    0.45263490703655407,
+    0.0214489980135113,
+    0.019478267000522465
+  ],
+  "physical_commands_sent": 0,
+  "task_success_verified": false,
+  "passed_on_training_server": true,
+  "lab_host_revalidation_required": true
+}

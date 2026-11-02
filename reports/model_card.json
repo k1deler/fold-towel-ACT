@@ -1,0 +1,17 @@
+{
+  "task": "fold_towel",
+  "format": "yam_train/act_ref-v1",
+  "source": {
+    "repo": "FuFutheBest/yam_train",
+    "commit": "0672a880e94d7683618b738f910d67d53a9e3df4",
+    "message": "train: long schedule (20000 epochs), multi-ckpt eval_offline, train_all.sh (split + all-data runs)"
+  },
+  "initialization": "new seed42 ACT with standard ImageNet ResNet18, no prior task checkpoint",
+  "selected_from": "epoch_03499.pt",
+  "epoch": 3499,
+  "joint_mae": 0.07333350825822466,
+  "real_recorded_input_replay_passed": true,
+  "deployment_adapter": "yam_infer ACTRef Policy",
+  "robot_tested": false,
+  "caution": "Offline selection is not folding success; full recorded/closed-loop testing remains required."
+}

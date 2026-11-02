@@ -1,0 +1,9 @@
+{
+  "task": "fold_towel",
+  "filename": "fold_towel_act_delta_seed42.pt",
+  "bytes": 336101927,
+  "sha256": "3a6057cd9dc0bc2acdaf9545df223ac0d8bdba73ecf870dc3a3102ffcedf7af6",
+  "selected_epoch": 3499,
+  "training_epochs": 5000,
+  "robot_tested": false
+}
