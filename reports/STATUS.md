@@ -8,4 +8,4 @@ Current observed phase: `waiting_for_idle_gpu`. All four H20 GPUs were busy. The
 
 Workspace: `~/output/personal/k1deler/fold_towel_20261101`. Status: `reports/pipeline_status.json`. The status file and logs on the server are authoritative; this Markdown is a snapshot, not a live monitor.
 
-No new full-task weight has been exported yet. No real robot command has been sent. Code and reports are being prepared for `k1deler/fold-towel`; access requires the repository-specific SSH deploy-key approval.
+No new full-task weight has been exported yet. No real robot command has been sent. Code, configurations, attributed upstream sources and validation reports have been pushed to `k1deler/fold-towel` through the repository-specific SSH deploy key. The remote main ref was checked against the local commit after upload. Raw recordings, model files and credentials were not committed.
