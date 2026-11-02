@@ -11,20 +11,32 @@ from audit import sha,raw_audit,converted_audit
 def atomic(path,data):
     tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n');tmp.replace(path)
 
-def idle_gpus():
-    raw=subprocess.check_output(['nvidia-smi','--query-gpu=index,memory.used,utilization.gpu',
+def gpu_inventory():
+    raw=subprocess.check_output(['nvidia-smi','--query-gpu=index,memory.used,memory.total,utilization.gpu',
                                  '--format=csv,noheader,nounits'],text=True,timeout=15)
-    return [i for i,m,u in ([int(x.strip()) for x in line.split(',')] for line in raw.splitlines()) if m<1000 and u<5]
+    return [dict(index=i,used_mib=m,total_mib=t,utilization=u) for i,m,t,u in
+            ([int(x.strip()) for x in line.split(',')] for line in raw.splitlines())]
+
+def eligible_gpus(shared_gpu=None):
+    rows=gpu_inventory()
+    idle=[r['index'] for r in rows if r['used_mib']<1000 and r['utilization']<5]
+    shared=[r['index'] for r in rows if shared_gpu is not None and r['index']==shared_gpu
+            and r['total_mib']-r['used_mib']>=32768 and r['index'] not in idle]
+    return idle+shared
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--workspace',type=Path,required=True)
-    p.add_argument('--max-wait-hours',type=float,default=6);args=p.parse_args()
+    p.add_argument('--max-wait-hours',type=float,default=6)
+    p.add_argument('--allow-shared-gpu',type=int,default=None,
+                   help='Explicitly authorized shared GPU; requires >=32GiB free. Idle GPUs are preferred.')
+    args=p.parse_args()
     if sys.platform!='linux':raise RuntimeError('Training pipeline requires the authorized Linux server')
     import fcntl
     workspace=args.workspace.resolve();reports=workspace/'reports';reports.mkdir(exist_ok=True)
     lock=(workspace/'pipeline.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     state={'task':'fold_towel','phase':'starting','pid':os.getpid(),'code_root':str(ROOT),
-           'hardware_connected':False,'training_started':False}
+           'hardware_connected':False,'training_started':False,
+           'authorized_shared_gpu':args.allow_shared_gpu}
     def status(phase,**values):
         state.update(phase=phase,updated_wall_ns=time.time_ns(),**values);atomic(reports/'pipeline_status.json',state)
         print('STATUS',phase,flush=True)
@@ -76,22 +88,23 @@ def main():
             run([sys.executable,'-u','-m','yam_train.data.convert','--raw',str(accepted_root),
                  '--out',str(data),'--workers','4'], 'conversion.log',3600)
         audit=converted_audit(data);atomic(reports/'converted_audit.json',audit)
-        status('waiting_for_idle_gpu',episodes=audit['episodes'],frames=audit['frames'],
-               note='All currently busy GPUs are left untouched')
+        status('waiting_for_eligible_gpu',episodes=audit['episodes'],frames=audit['frames'],
+               note='Idle GPU preferred; only the explicitly authorized shared GPU may also be used. No other jobs stopped.')
         deadline=time.monotonic()+args.max_wait_hours*3600;gpu_lock=None;gpu=None
         while time.monotonic()<deadline:
-            for candidate in idle_gpus():
+            for candidate in eligible_gpus(args.allow_shared_gpu):
                 locks=Path.home()/'.cache/k1deler_training';locks.mkdir(parents=True,exist_ok=True)
                 handle=(locks/f'gpu_{candidate}.lock').open('a')
                 try:fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
                 except BlockingIOError:handle.close();continue
                 time.sleep(3)
-                if candidate not in idle_gpus():handle.close();continue
+                if candidate not in eligible_gpus(args.allow_shared_gpu):handle.close();continue
                 gpu_lock=handle;gpu=candidate;break
             if gpu is not None:break
             time.sleep(30)
-        if gpu is None:raise TimeoutError('No idle GPU became available within configured six-hour wait; no training started')
+        if gpu is None:raise TimeoutError('No eligible GPU became available within configured waiting budget; no training started')
         env['CUDA_VISIBLE_DEVICES']=str(gpu)
+        state['allocation_at_launch']=gpu_inventory()
         status('real_data_smoke_training',gpu=gpu,training_started=True)
         smoke=workspace/'runs/smoke'
         if not (smoke/'ckpt/last.pt').is_file():
@@ -105,6 +118,17 @@ def main():
         run([sys.executable,'-u',str(ROOT/'training/fit.py'),'--data',str(data),'--out',str(run_dir),
              '--epochs','5000'],'train.log',43200)
         status('held_out_selection_and_export')
+        # Releasing the training process frees this card. If a different card is
+        # idle at evaluation time, use it under the same cooperative GPU lock.
+        alternatives=[r['index'] for r in gpu_inventory() if r['index']!=gpu
+                      and r['used_mib']<1000 and r['utilization']<5]
+        for other in alternatives:
+            handle=(Path.home()/'.cache/k1deler_training'/f'gpu_{other}.lock').open('a')
+            try:fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            except BlockingIOError:handle.close();continue
+            gpu_lock.close();gpu_lock=handle;env['CUDA_VISIBLE_DEVICES']=str(other)
+            status('held_out_selection_and_export',evaluation_gpu=other)
+            break
         run([sys.executable,'-u',str(ROOT/'training/select_candidate.py'),'--run',str(run_dir),'--data',str(data),
              '--out',str(workspace/'artifacts')],'selection.log',7200)
         status('complete_offline',model_path=str(workspace/'artifacts/fold_towel_act_delta_seed42.pt'),

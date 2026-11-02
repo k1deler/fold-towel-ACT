@@ -40,6 +40,17 @@ def test_training_scripts_do_not_shadow_standard_library():
     files={p.stem for p in (ROOT/'training').glob('*.py')}
     assert not files & sys.stdlib_module_names
 
+def test_gpu_selection_prefers_idle_and_only_authorized_shared_card(monkeypatch):
+    import pipeline
+    monkeypatch.setattr(pipeline,'gpu_inventory',lambda:[
+        dict(index=0,used_mib=500,total_mib=98000,utilization=0),
+        dict(index=1,used_mib=10000,total_mib=98000,utilization=100),
+        dict(index=2,used_mib=6000,total_mib=98000,utilization=99),
+        dict(index=3,used_mib=90000,total_mib=98000,utilization=100)])
+    assert pipeline.eligible_gpus()==[0]
+    assert pipeline.eligible_gpus(2)==[0,2]
+    assert pipeline.eligible_gpus(3)==[0]
+
 def test_training_and_inference_use_identical_model_structure():
     import torch
     from yam_train.policy import ACTPolicy

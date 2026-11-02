@@ -33,7 +33,7 @@
 
 本次独立服务器目录：`~/output/personal/k1deler/fold_towel_20261101`。原始录制从本机`C:\Users\lenovo\Downloads\fold_towel`上传至该目录，按文件SHA复核。使用现有CUDA环境，只将缺少的读取依赖装在该实验的`dependencies/`；不升级原环境、不覆盖原实验、不停止其他人的作业。
 
-GPU忙时进入`waiting_for_idle_gpu`，最多等待6小时；只选择空闲GPU。单组正式训练最多12小时、选择评估最多2小时，失败或超时均记录，不能当作完成。查看`reports/pipeline_status.json`和各阶段日志。
+默认GPU忙时等待空闲卡，最多等待6小时。用户在2026-11-02明确允许共用GPU2，因此本次运行使用`--allow-shared-gpu 2`：仍优先空闲卡，共用卡须至少剩余32GiB显存；不停止其他作业。训练完成后其他卡空闲时可用于选择评估。不是未经验证的动态多卡同步训练。单组正式训练最多12小时、选择评估最多2小时，失败或超时均记录，不能当作完成。查看`reports/pipeline_status.json`和各阶段日志。
 
 数据转换与全部训练阶段只访问文件和GPU，不连接机器人、实时相机或CAN。
 

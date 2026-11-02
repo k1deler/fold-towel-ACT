@@ -4,7 +4,9 @@ Prepared from 51 user-supplied recorded episodes (about 2.61GB, 943 seconds). Th
 
 CPU contract tests passed on the training server, including one real gradient update of a small generated test model and exact equality with the deployed ACTRef network. This test model is never saved as a deployable folding model.
 
-Current observed phase: `waiting_for_idle_gpu`. All four H20 GPUs were busy. The detached pipeline will start its own real-data smoke training and then the configured independent run only when a GPU is idle. It waits at most six hours, then records an incomplete result rather than preempting existing work.
+Current observed phase: `training`. On 2026-11-02 the user explicitly authorized shared compute on GPU2. The pipeline prefers idle GPUs but also permits the authorized shared card when at least 32GiB of memory is free. No existing job was stopped. Real recorded-data smoke training finished, and exact train/deploy network agreement on recorded input passed with max_abs_diff=0.0. Formal training is active on GPU2: seed42, batch8, chunk100, 5000 epochs. Snapshot: epoch72 completed, 365 optimizer updates. See `training_started_snapshot.json` for the measured status and approximate remaining duration.
+
+The active training process is not converted to dynamic multi-GPU training. If another GPU is idle when final held-out selection runs, the pipeline can use it for evaluation. Shared compute speed and the remaining-time estimate can change.
 
 Workspace: `~/output/personal/k1deler/fold_towel_20261101`. Status: `reports/pipeline_status.json`. The status file and logs on the server are authoritative; this Markdown is a snapshot, not a live monitor.
 

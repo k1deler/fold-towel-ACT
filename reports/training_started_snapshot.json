@@ -1,0 +1,31 @@
+{
+  "snapshot_wall_ns": 1793587732344223241,
+  "phase": "training",
+  "gpu": 2,
+  "pipeline_pid": 1173358,
+  "training_pid": 1173560,
+  "epoch_completed": 72,
+  "updates_completed": 365,
+  "target_epochs": 5000,
+  "last_train_loss": 3.272918462753296,
+  "last_validation_loss": 0.999330997467041,
+  "seconds_per_epoch_recent": 3.0854565863031893,
+  "estimated_remaining_hours_excluding_selection": 4.2227901668655035,
+  "eta_is_estimate": true,
+  "smoke_contract": {
+    "status": "passed",
+    "max_abs_diff": 0.0,
+    "real_recorded_input": true,
+    "image_size": [
+      480,
+      640
+    ],
+    "chunk_size": 100,
+    "task": "fold_towel",
+    "physical_robot_commands": 0,
+    "smoke_checkpoint_only": true
+  },
+  "shared_gpu_explicitly_authorized": true,
+  "other_jobs_stopped": false,
+  "hardware_connected": false
+}
