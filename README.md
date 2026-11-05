@@ -1,8 +1,23 @@
-# Fold towel / ACT 折毛巾项目
+# fold-towel-ACT — ACT 折毛巾
 
 本项目以用户提供的51段`fold_towel`真实遥操作录制训练折毛巾模型，复用已验证黄块项目的ACT参考网络与YAM推理结构。不是复用黄块任务权重，也不将随机测试模型作为成品。
 
 **2026-11-02更新：训练与离线选模已完成。** 5000epoch、25000更新，选出epoch3499，验证窗口平均两臂关节MAE约0.07333rad。336MB真实模型已导出并核验SHA；实机折毛巾尚未验证。部署完整步骤见[部署步骤.md](部署步骤.md)，独立部署ZIP自带权重，使用`bash install_bundle.sh`进行不连接硬件的安装与真实观测自检。
+
+## 仓库地址与安装目录
+
+```bash
+git clone git@github.com:k1deler/fold-towel-ACT.git
+cd fold-towel-ACT
+```
+
+已有本地克隆可在其目录执行：
+
+```bash
+git remote set-url origin git@github.com:k1deler/fold-towel-ACT.git
+```
+
+改名不改变模型中的`fold_towel`任务标识、权重SHA或训练/推理合同。此前交付ZIP与现场安装目录沿用原文件名；按[部署步骤.md](部署步骤.md)使用，不要仅为仓库改名移动正在使用的机器人目录。已有训练记录中的历史机器路径按原样保留。
 
 ## 结构
 
@@ -57,6 +72,6 @@ bash scripts/run_robot.sh
 
 ## 数据和仓库
 
-目标仓库`k1deler/fold-towel`。代码、配置、来源、数据SHA摘要、训练曲线和报告可以入库；2.61GB原始录制、模型大权重、虚拟环境、密码和私钥不直接提交Git。权重另行下载并用SHA识别，原始数据保留在授权训练目录。
+目标仓库`k1deler/fold-towel-ACT`。代码、配置、来源、数据SHA摘要、训练曲线和报告可以入库；2.61GB原始录制、模型大权重、虚拟环境、密码和私钥不直接提交Git。权重另行下载并用SHA识别，原始数据保留在授权训练目录。
 
 训练记录是本次实验产物；ACT架构、参考训练代码、YAM推理程序和SDK保留来源。说明见`THIRD_PARTY.md`。
